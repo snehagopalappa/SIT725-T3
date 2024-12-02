@@ -12,8 +12,6 @@ const multiply = (n1, n2) => n1 * n2;
 const divide = (n1, n2) => (n2 !== 0 ? n1 / n2 : "Division by zero error");
 
 
-
-
 //GET Endpoint
 app.get("/addTwoNumber", (req,res)=>{
     const n1= parseInt(req.query.n1);
