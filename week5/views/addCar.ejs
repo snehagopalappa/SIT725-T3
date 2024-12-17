@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head'); %>
+  <body>
+    <div class="container mt-5">
+      <div class="form-container">
+        <h1>Add a New Car</h1>
+        <form action="/add-car" method="POST">
+          <div class="mb-3">
+            <label for="color" class="form-label">Color</label>
+            <input
+              type="text"
+              class="form-control"
+              id="color"
+              name="color"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="make" class="form-label">Make</label>
+            <input
+              type="text"
+              class="form-control"
+              id="make"
+              name="make"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="model" class="form-label">Model</label>
+            <input
+              type="text"
+              class="form-control"
+              id="model"
+              name="model"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="regoStatus" class="form-label">Rego Status</label>
+            <select name="regoStatus" class="form-select">
+              <option value="Active" selected>Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Add Car</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

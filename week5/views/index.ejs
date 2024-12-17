@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head'); %>
+  <body>
+    <div class="container mt-4">
+      <h1>Car List</h1>
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Color</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Rego Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cars.forEach(car => { %>
+          <tr>
+            <td><%= car.color %></td>
+            <td><%= car.make %></td>
+            <td><%= car.model || "N/A" %></td>
+            <td>
+              <form
+                action="/update-car/<%= car._id %>"
+                method="POST"
+                onsubmit="return confirmToggleStatus()"
+              >
+                <% if (car.regoStatus === "Active") { %>
+                <button type="submit" class="btn btn-success btn-sm">
+                  Active
+                </button>
+                <% } else { %>
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Inactive
+                </button>
+                <% } %>
+                <input
+                  type="hidden"
+                  name="regoStatus"
+                  value="<%= car.regoStatus === 'Active' ? 'Inactive' : 'Active' %>"
+                />
+              </form>
+            </td>
+            <td>
+              <form action="/cars/delete/<%= car._id %>" method="POST">
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <a href="/add-car" class="btn btn-primary">Add a New Car</a>
+    </div>
+
+    <script>
+      function confirmToggleStatus() {
+        return confirm("Are you sure you want to toggle the rego status?");
+      }
+    </script>
+  </body>
+</html>
